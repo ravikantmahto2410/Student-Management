@@ -1,34 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useContext } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { ToastContainer, toast } from 'react-toastify';
 
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import { Route, Routes} from 'react-router-dom';
+import AddStudent from './pages/AddStudent';
+import AllStudents from './pages/AllStudents';
+
+const App = () => {
+
+ 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='bg-[#F8F9FD]'>
+      <ToastContainer />
+      <Navbar/>
+      <div className='flex items-start'>
+        <Sidebar/>
+        <Routes>
+          <Route path='/' element={<></>}/>
+          <Route path='/add-student' element={<AddStudent/>}/> {/*Route for AddStudent.jsx file */}
+          <Route path='/all-students' element={<AllStudents/>}/> {/*Route for AllStudent.jsx file */}
+                             
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
